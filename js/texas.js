@@ -58,6 +58,7 @@ function dealHand(playerId,deckStack)  {
     hand.push(dealt1);
     $(playerId).append("<div>"+dealt1.value+"</div>");
   }
+
   console.log("hand", hand[1].value);
   console.log("hand", hand);
   console.log("new deck stack", deckStack);
@@ -69,10 +70,11 @@ function readClickedValue() {
   $("div").click(function(e){
     var value = $(e.target).text();
     console.log(value);
-    return value;
+    checkClickedValue(value);
+    return value; //is this needed?
   })
 }
 
 function checkClickedValue(value) {
-
+  console.log("value2", value);
 }
