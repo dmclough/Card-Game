@@ -51,7 +51,7 @@ function createDeckStack() {
 //create the ininitial hand:
 function dealHand(playerId,deckStack)  {
   var hand = [];
-  var cardsInInitialHand = 8;
+  var cardsInInitialHand = 7;
   for (var i = 0; i < cardsInInitialHand; i++) {
     var dealtCard = deckStack.pop();
     hand.push(dealtCard);
@@ -65,22 +65,27 @@ function readClickedValue() {
   $("div").click(function(e){
     var value = $(e.target).text();
     value = parseInt(value, 10);
-    findCardInHand(value);
+    checkComputerCards(value);
   })
 }
 
 // searches through a given hand and returns the
 // first card with the given value.
-function findCardInHand(value) {
+function checkComputerCards(value) {
   for (var i = 0; i < computer.length; i++) {
     if (computer[i].value == value) {
+      $("#p1hand").append("<div>"+computer[i].value+"</div>");
+      $('#p2hand div:(i)').remove();
+
+      var removed = computer.splice(i, 1);
+      player1Hand.push = removed;
       console.log("match found", value);
-        // var removed = computer.splice(i, 1);
-        // player1Hand.push(removed);
+      console.log("removed:", removed);
+      console.log("new computer array:", computer);
+      console.log("new player 1 hand:", player1Hand);
 
     } else {
-      console.log("No Found match");
-      // return false;
+      console.log("No match", value);
     }
   }
 }
