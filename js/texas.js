@@ -1,6 +1,5 @@
 var player1Hand = [];
-var player2Hand = [];
-
+var computer = [];
 class Card {
   constructor(value, suite) {
     this.value = value;
@@ -45,7 +44,7 @@ function createDeckStack() {
     deckStack[j] = t;
   }
   player1Hand = dealHand("#p1hand", deckStack);
-  player2Hand = dealHand("#p2hand", deckStack);
+  computer = dealHand("#p2hand", deckStack);
   return deckStack;
 }
 
@@ -58,7 +57,7 @@ function dealHand(playerId,deckStack)  {
     hand.push(dealtCard);
     $(playerId).append("<div>"+dealtCard.value+"</div>");
   }
-  console.log("hand single card", hand[1].value);
+  // console.log("hand single card", hand[1].value);
   return hand;
 }
 
@@ -66,23 +65,22 @@ function readClickedValue() {
   $("div").click(function(e){
     var value = $(e.target).text();
     value = parseInt(value, 10);
-
-    console.log(value);
-    checkClickedValue(value);
-    return value; //is this needed?
+    findCardInHand(value);
   })
-}
-
-function checkClickedValue(value) {
-  var card = findCardInHand(player2Hand, value);
-  console.log("clicked", value);
-  // console.log("index var", index);
 }
 
 // searches through a given hand and returns the
 // first card with the given value.
-function findCardInHand(hand, value) {
-  for (var i = 0; i < player2Hand.length; i++) {
+function findCardInHand(value) {
+  for (var i = 0; i < computer.length; i++) {
+    if (computer[i].value == value) {
+      console.log("match found", value);
+        // var removed = computer.splice(i, 1);
+        // player1Hand.push(removed);
 
+    } else {
+      console.log("No Found match");
+      // return false;
+    }
   }
 }
