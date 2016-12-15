@@ -10,36 +10,42 @@ class Card {
   }
 }
 
+function clearBoard() { //how can this be streamlined?
+  while (p1hand.hasChildNodes()) {
+    p1hand.removeChild(p1hand.lastChild);
+  }
+  while (p2hand.hasChildNodes()) {
+    p2hand.removeChild(p2hand.lastChild);
+  }
+}
+
 //create a deck of cards
 function createDeckStack() {
   var numberOfDecks = 1; //define the number of 52 card decks in stack.
   var deckStack = [];
+  clearBoard();
   var suitesOptions = ["heart", "spade", "club", "diamond"];
   for (var i = 0; i <= ((numberOfDecks*52) - 1); i++){
     var value = (i%13) +1;
     var suite = suitesOptions[i % 4];
     var card = new Card(value, suite);
     deckStack.push(card);
+    console.log("pushed card");
 
   }
-  console.log("preshuffled:", deckStack);
 
-  // console.log(deckStack);
   var m = deckStack.length, t, j;
   //Using fisher-Yates shuffle...
   while (m) {
-    //pick a remaining element...
     j = Math.floor(Math.random() * m--);
     //ad swap it with the current element.
     t = deckStack[m];
     deckStack[m] = deckStack[j];
     deckStack[j] = t;
+    console.log("shuffled deck");
   }
-  console.log(deckStack.length);
-  console.log("created deck stack:", deckStack);
-  var player1Hand = dealHand("#p1card", deckStack);
-  var player2Hand = dealHand("#p2card", deckStack);
-
+  var player1Hand = dealHand("#p1hand", deckStack);
+  var player2Hand = dealHand("#p2hand", deckStack);
   return deckStack;
 }
 
@@ -50,7 +56,12 @@ function dealHand(playerId,deckStack)  {
   for (var i = 0; i < cardsInInitialHand; i++) {
     var dealt1 = deckStack.pop();
     hand.push(dealt1);
-    $(playerId + i).text(hand[i].value);
+    $(playerId).append("<div>"+dealt1.value+"</div>");
   }
+  console.log("hand", hand[1].value);
+  console.log("hand", hand);
+
+  console.log("new deck stack", deckStack);
+
   return hand;
 }
