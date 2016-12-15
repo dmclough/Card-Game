@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   console.log("DOM fully loaded and parsed");
   var deckStack = createDeckStack();
+  readClickedValue();
 });
 
 class Card {
@@ -31,7 +32,6 @@ function createDeckStack() {
     var card = new Card(value, suite);
     deckStack.push(card);
     console.log("pushed card");
-
   }
 
   var m = deckStack.length, t, j;
@@ -60,8 +60,19 @@ function dealHand(playerId,deckStack)  {
   }
   console.log("hand", hand[1].value);
   console.log("hand", hand);
-
   console.log("new deck stack", deckStack);
 
   return hand;
+}
+
+function readClickedValue() {
+  $("div").click(function(e){
+    var value = $(e.target).text();
+    console.log(value);
+    return value;
+  })
+}
+
+function checkClickedValue(value) {
+
 }
