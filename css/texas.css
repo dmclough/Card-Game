@@ -1,0 +1,9 @@
+.row {
+  border: 1px solid red;
+}
+
+#cardContainer div {
+  border: 1px solid red;
+  display: inline-block;
+  width: 30px;
+}
