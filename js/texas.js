@@ -75,17 +75,19 @@ function checkComputerCards(value) {
   for (var i = 0; i < computer.length; i++) {
     if (computer[i].value == value) {
       $("#p1hand").append("<div>"+computer[i].value+"</div>");
-      $('#p2hand div:(i)').remove();
-
       var removed = computer.splice(i, 1);
       player1Hand.push = removed;
       console.log("match found", value);
       console.log("removed:", removed);
       console.log("new computer array:", computer);
       console.log("new player 1 hand:", player1Hand);
-
     } else {
       console.log("No match", value);
     }
   }
+}
+
+
+function removeCards() {
+
 }
