@@ -57,6 +57,18 @@ function dealHand(playerId,deckStack)  {
     hand.push(dealtCard);
     $(playerId).append("<div>"+dealtCard.value+"</div>");
   }
+
+  //clear array, then rebuild array
+  function rebuildHands() {
+    for(var i = 0; i < player1Hand.length; i++){
+      console.log("", player1Hand[0])
+
+      $(playerId).append("<div>"+dealtCard.value+"</div>");
+
+    }
+
+
+  }
   // console.log("hand single card", hand[1].value);
   return hand;
 }
@@ -75,8 +87,8 @@ function checkComputerCards(value) {
   for (var i = 0; i < computer.length; i++) {
     if (computer[i].value == value) {
       $("#p1hand").append("<div>"+computer[i].value+"</div>");
-      var removed = computer.splice(i, 1);
-      player1Hand.push = removed;
+      var removed = computer.splice(i, 1)[0];
+      player1Hand.push(removed);
       console.log("match found", value);
       console.log("removed:", removed);
       console.log("new computer array:", computer);
